@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
@@ -11,5 +12,15 @@ class PublicController extends Controller
     {
 
         return view('welcome');
+    }
+
+    public function displayPosts()
+    {
+        $posts = Post::all();
+
+        foreach ($posts as $post) {
+            dump($post->title);
+        }
+        //dd($posts);
     }
 }

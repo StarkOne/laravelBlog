@@ -13,18 +13,16 @@
 
 Route::get('/' , 'PublicController@index');
 
-Route::prefix('admin')->group(function () {
+Route::get('posts', 'PublicController@displayPosts')->name('displayPosts');
 
-    Route::get('users', function (){
-       return "admin users";
-    });
+Route::namespace('Admin')->prefix('admin')->group(function () {
 
-    Route::get('posts', function (){
-        return "admin posts";
-    });
+    Route::get('users', 'UsersController@listUsers');
+
 
     Route::get('users/{id}', function($id) {
-        return "admin user:" . $id;
+        //return view('welcome');
     });
 
 });
+Route::redirect('/old', '/new', 301);
